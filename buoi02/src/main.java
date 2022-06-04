@@ -60,11 +60,10 @@ public class main {
         // \" thêm dấu ngoặc
 
         //Enum
-//        gender nam =gender.MALE;
-//        System.out.println();
-//        gender nữ =gender.FEMALE;
-//        System.out.println();
-
+        Gender nam = Gender.MALE;
+        System.out.println(nam);
+        Gender nữ =Gender.FEMALE;
+        System.out.println(nữ);
 
 
     }
