@@ -12,7 +12,9 @@ public class exerciseDay03 {
             j++;
         }
         System.out.println("số lần \"e\" xuất hiên là :"+j);
+
         //bài tập 2
+        System.out.println();
         Scanner sc = new Scanner(System.in);
         System.out.println("Nhập 1 chuỗi bất kì: ");
         String str=sc.next();
