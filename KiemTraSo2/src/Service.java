@@ -25,6 +25,8 @@ public class Service {
                             User user1 =service.signUp(allUser);
                             allUser.add(user1);
                             break;
+                        default:
+                            System.out.println("Không có lựa chọn này");
 
 
                     }
@@ -215,6 +217,8 @@ public class Service {
                                     System.out.println("Chưa tồn tại tài khoản");
                                 }
                             }
+                        default:
+                            System.out.println("Không có lựa chọn này");
                     }
 
             }
