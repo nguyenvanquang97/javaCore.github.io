@@ -13,7 +13,9 @@ public class Util {
         System.out.println("0 - Thoát chương trình");
     }
     public static void subMenu2(){
+        System.out.println("Sai thông tin tài khoản hoặc mật khẩu");
         System.out.println("1 - Đăng nhập lại");
         System.out.println("2 - Quên mật khẩu");
+        System.out.println("3 - Về trang chủ");
     }
 }

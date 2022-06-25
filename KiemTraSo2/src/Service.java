@@ -2,11 +2,16 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Service {
+    ArrayList<User> allUser;
+    Scanner sc;
+    public Service() {
+        sc=new Scanner(System.in);
+        allUser =new ArrayList<>();
+    }
     public void main(){
-        ArrayList<User> allUser =new ArrayList<>();
+//        ArrayList<User> allUser =new ArrayList<>();
         User user =new User("0","0","0");
         allUser.add(user);
-        Scanner sc = new Scanner(System.in);
         Service service = new Service();
         while (true) {
             Util.menu();
@@ -40,16 +45,7 @@ public class Service {
         }
     }
     static final String REGEX_EMAIL = "^(.+)@(\\S+)$";
-
-
-    public Service() {
-    }
-
-    public Scanner sc =new Scanner(System.in);
     public User signUp(ArrayList<User> allUser) {
-
-
-        System.out.println();
         boolean flag = true;
         String userName1 = null;
         while (flag==true) {
@@ -57,17 +53,15 @@ public class Service {
             userName1 = sc.nextLine();
             for (User u:allUser){
 
-                   if (!u.getUserName().contains(userName1)) {
-                       flag=false;
-                   } else {
-                       System.out.println("username đã tồn tại");
-                       System.out.println("Vui lòng nhập lại");
-                   }
-               }
+                if (!u.getUserName().contains(userName1)) {
+                    flag=false;
+                } else {
+                    System.out.println("username đã tồn tại");
+                    System.out.println("Vui lòng nhập lại");
+                }
+            }
 
         }
-
-
         flag = true;
         String email1 = null;
         while (flag == true) {
@@ -78,7 +72,7 @@ public class Service {
                     if (!u.getEmail().contains(email1)) {
                         flag = false;
                     } else {
-                        System.out.println("username đã tồn tại");
+                        System.out.println("email đã tồn tại");
                         System.out.println("Vui lòng nhập lại");
                     }
                 }
@@ -88,9 +82,7 @@ public class Service {
             }
 
         }
-
-
-        flag = true;
+         flag = true;
         String passWood1 = null;
         while (flag) {
             System.out.println("Nhập PassWood: ");
@@ -117,6 +109,7 @@ public class Service {
                 System.out.println("vui lòng nhập lại");
             }
         }
+        System.out.println("Đăng kí tài khoản thành công!");
         User user1 = new User (userName1,passWood1,email1);
         return user1;
     }
@@ -133,10 +126,8 @@ public class Service {
                 count++;
                 Util.subMenu();
                 int choose = Integer.parseInt(sc.nextLine());
-
                 switch (choose) {
                     case 1:
-
                        boolean flag =true;
                        while (flag){
                            System.out.println("Nhập username mới: ");
@@ -151,11 +142,8 @@ public class Service {
                                    System.out.println("Vui lòng nhập lại");
                                }
                            }
-
                        }
-
                         break;
-
                     case 2:
                         boolean flag1 =true;
                         while (flag1 == true) {
@@ -175,15 +163,37 @@ public class Service {
                                 System.out.println("Email không hợp lệ");
                                 System.out.println("Vui lòng nhập lại");
                             }
-
                         }
-
-
                         break;
                     case 3:
-                        System.out.println("Nhập passwood mới: ");
-                        String newPassWood = sc.nextLine();
-                        a.setPassWood(newPassWood);
+                        flag =true;
+                        while (flag) {
+                            System.out.println("Nhập passwood mới: ");
+                            String newPassWood = sc.nextLine();
+                            if (newPassWood.length() >= 7 || newPassWood.length() <= 15) {
+                                boolean checkPassWood = !newPassWood.equals(newPassWood.toLowerCase());
+                                if (checkPassWood) {
+                                    if (newPassWood.contains(".") || newPassWood.contains(",")
+                                            || newPassWood.contains("-") || newPassWood.contains("_")
+                                            || newPassWood.contains(";")) {
+                                        a.setPassWood(newPassWood);
+                                        flag = false;
+                                    } else {
+                                        System.out.println("passwood không hợp lệ");
+                                        System.out.println("vui lòng nhập lại");
+                                    }
+                                }
+                                else {
+                                    System.out.println("passwood không hợp lệ");
+                                    System.out.println("vui lòng nhập lại");
+                                }
+                            }
+                            else {
+                                System.out.println("passwood không hợp lệ");
+                                System.out.println("vui lòng nhập lại");
+                            }
+                        }
+
                         break;
                     case 4:
                         main( );
@@ -192,11 +202,7 @@ public class Service {
                         System.exit(0);
                     default:
                         System.out.println("Không có lựa chọn này!");
-
-
                 }
-
-
             }
         }
 
@@ -208,28 +214,59 @@ public class Service {
                         case 1:
                             login(allUser);
                         case 2:
-                            System.out.println("Nhập email");
-                            String emailForgot = sc.nextLine();
-                            for (User a : allUser) {
-                                if (a.getEmail().equals(emailForgot)) {
-                                    System.out.println("Chào mừng " + a.getUserName());
-                                } else {
+                            boolean flag =true;
+                            while (flag){
+                                int countEmail = 0;
+                                System.out.println("Nhập email: ");
+                                String emailForgot = sc.nextLine();
+                                for (User b : allUser) {
+                                    if (b.getEmail().equals(emailForgot)) {
+                                        System.out.println("Chào mừng " + b.getUserName());
+                                        flag =false;
+                                        boolean flag1=true;
+                                        while (flag1){
+                                            System.out.println("Nhập mật khẩu mới:");
+                                            String newPassWood = sc.nextLine();
+                                            if (newPassWood.length() >= 7 || newPassWood.length() <= 15) {
+                                                boolean checkPassWood = !newPassWood.equals(newPassWood.toLowerCase());
+                                                if (checkPassWood) {
+                                                    if (newPassWood.contains(".") || newPassWood.contains(",")
+                                                            || newPassWood.contains("-") || newPassWood.contains("_")
+                                                            || newPassWood.contains(";")) {
+                                                        flag1 = false;
+                                                        b.setPassWood(newPassWood);
+                                                        countEmail++;
+                                                    } else {
+                                                        System.out.println("passwood không hợp lệ");
+                                                        System.out.println("vui lòng nhập lại");
+                                                    }
+                                                }
+                                                else {
+                                                    System.out.println("passwood không hợp lệ");
+                                                    System.out.println("vui lòng nhập lại");
+                                                }
+                                            }
+                                            else {
+                                                System.out.println("passwood không hợp lệ");
+                                                System.out.println("vui lòng nhập lại");
+                                            }
+                                        }
+                                    }
+                                }
+                                if (countEmail==0){
                                     System.out.println("Chưa tồn tại tài khoản");
                                 }
                             }
+                            break;
+                        case 3:
+                            main();
+                            break;
                         default:
                             System.out.println("Không có lựa chọn này");
                     }
 
             }
         }
-
-
-
-
-
-
-
     public static boolean checkEmail(String email){
         boolean checkEmail = email.matches(REGEX_EMAIL);
         return checkEmail;
