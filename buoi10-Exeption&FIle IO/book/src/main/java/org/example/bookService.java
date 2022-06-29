@@ -52,7 +52,7 @@ public void findBookByCategory(ArrayList<Book>allBook){
     int count =0;
     for (Book b:allBook){
         for (int j=0;j<b.getCategory().length;j++){
-            if (b.getCategory()[j].toLowerCase().contains(fCategory)){
+            if (b.getCategory()[j].toLowerCase().contains(fCategory.toLowerCase())){
                 System.out.print(b.getId()+" - "+b.getTitle() +" - ");
                 for (int i=0;i<b.getCategory().length;i++){
                     System.out.print( " "+b.getCategory()[i]);
@@ -70,6 +70,7 @@ public void findBookByCategory(ArrayList<Book>allBook){
     if (count ==0){
         System.out.println("Không có thể loại này!");
     }
+
 
 }
     public void sortListByPageNumber(ArrayList<Book> allBook) {
@@ -93,5 +94,6 @@ public void findBookByCategory(ArrayList<Book>allBook){
         System.out.println("Danh sách sau khi sắp xếp theo năm xuất bản: ");
         showAllBook(allBook);
     }
+
 
 }

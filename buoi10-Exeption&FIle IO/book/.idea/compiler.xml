@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Book_example" />
+        <module name="movie_example" />
       </profile>
     </annotationProcessing>
   </component>
