@@ -7,7 +7,7 @@ public class UserService {
     public ArrayList<User> getAllUser(){
         ArrayList<User> userArrayList =new ArrayList<>();
         userArrayList.add(new User("0123456789","0123456789","0123456789",5000000 ));
-        userArrayList.add(new User("0384162133","0123456789","0384162133",50000));
+        userArrayList.add(new User("0384162133","0123456789","0384162133",5000000));
         return userArrayList;
     }
     public User login (ArrayList<User> userArrayList){
@@ -51,4 +51,10 @@ public class UserService {
         boolean checkPhoneNumber = email.matches(REGEX_PHONE_NUMBER);
         return checkPhoneNumber;
     }
+    static final String REGEX_ACOUNT_NUMBER="^\\d{8,16}$";
+    public boolean checkAcountNumber(String acountNumber){
+        boolean checkAcountNumber = acountNumber.matches(REGEX_ACOUNT_NUMBER);
+        return checkAcountNumber;
+    }
+
 }
