@@ -89,6 +89,7 @@ public class Controller {
             if (service.checkAcountNumber(acoutNumberTake)){
                 for (User a : userArrayList){
                     if (a.getAccountNumber().equals(acoutNumberTake)){
+                        count ++;
                         boolean flagMoneySend =true;
                         while (flag){
                             System.out.println("Nhập số tiền cần chuyển:");
@@ -101,7 +102,6 @@ public class Controller {
                                 System.out.println("Chuyển tiền thành công");
                                 HistoryTrading newHistoryTrading = historyTrading(user,a,describe,moneySend);
                                 historyTradings.add(newHistoryTrading);
-                                count ++;
                                 flag = false;
                             }
                             else {
@@ -111,10 +111,10 @@ public class Controller {
                             }
                         }
                     }
-                    if (count == 0){
-                        System.out.println("Số tài khoản nhận không tồn tại");
-                        System.out.println("Vui lòng nhập lại");
-                    }
+                }
+                if (count == 0){
+                    System.out.println("Số tài khoản nhận không tồn tại");
+                    System.out.println("Vui lòng nhập lại");
                 }
                 flag = false;
             }
@@ -132,8 +132,7 @@ public class Controller {
        }
     }
     public HistoryTrading historyTrading(User user,User userTakeMoney,String describe, long moneySend){
-        Random rd = new Random();
-        int idTrading=rd.nextInt();
+        String idTrading=null;
         LocalDate dateTrading = LocalDate.now();
         String acountNumbertake =userTakeMoney.getAccountNumber();
         HistoryTrading newHistoryTrading =new HistoryTrading(user.getAccountNumber(),idTrading,dateTrading,describe,acountNumbertake,moneySend);

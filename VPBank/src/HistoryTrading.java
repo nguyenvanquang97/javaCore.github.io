@@ -2,7 +2,7 @@ import java.time.LocalDate;
 
 public class HistoryTrading {
     private String accountNumber;
-    private int idTrading;
+    private String idTrading;
     private LocalDate dateTrading;
     private String describe;
     private String acooutNumberTake;
@@ -11,9 +11,9 @@ public class HistoryTrading {
     public HistoryTrading() {
     }
 
-    public HistoryTrading(String accountNumber, int idTrading, LocalDate dateTrading, String describe, String acooutNumberTake, long moneyTrading) {
+    public HistoryTrading(String accountNumber, String idTrading, LocalDate dateTrading, String describe, String acooutNumberTake, long moneyTrading) {
         this.accountNumber = accountNumber;
-        this.idTrading = idTrading;
+        this.idTrading = Util.randomIdTrading(8);
         this.dateTrading = dateTrading;
         this.describe = describe;
         this.acooutNumberTake = acooutNumberTake;
@@ -28,11 +28,11 @@ public class HistoryTrading {
         this.accountNumber = accountNumber;
     }
 
-    public int getIdTrading() {
+    public String getIdTrading() {
         return idTrading;
     }
 
-    public void setIdTrading(int idTrading) {
+    public void setIdTrading(String idTrading) {
         this.idTrading = idTrading;
     }
 
